@@ -1,0 +1,51 @@
+#include "shared-bindings/board/__init__.h"
+
+#include "boards/board.h"
+
+STATIC const mp_rom_map_elem_t board_global_dict_table[] = {
+
+    // [LPUART1 ALT0] UART to FPGA
+    { MP_OBJ_NEW_QSTR(MP_QSTR_UART_RX), MP_ROM_PTR(&pin_GPIO_09) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_UART_TX), MP_ROM_PTR(&pin_GPIO_10) },
+
+    // [FlexSPI A ALT0] (also connected to the flash)
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_A_SS0),  MP_ROM_PTR(&pin_GPIO_SD_05) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_A_SS1),  MP_ROM_PTR(&pin_GPIO_SD_06) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_A_SCLK), MP_ROM_PTR(&pin_GPIO_SD_10) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_A_DQS),  MP_ROM_PTR(&pin_GPIO_SD_12) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_A_D0),   MP_ROM_PTR(&pin_GPIO_SD_09) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_A_D1),   MP_ROM_PTR(&pin_GPIO_SD_07) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_A_D2),   MP_ROM_PTR(&pin_GPIO_SD_08) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_A_D3),   MP_ROM_PTR(&pin_GPIO_SD_11) },
+
+    // [FlexSPI B ALT0]
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_B_SS0),  MP_ROM_PTR(&pin_GPIO_SD_00) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_B_SCLK), MP_ROM_PTR(&pin_GPIO_SD_13) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_B_DQS),  MP_ROM_PTR(&pin_GPIO_00) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_B_D0),   MP_ROM_PTR(&pin_GPIO_SD_03) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_B_D1),   MP_ROM_PTR(&pin_GPIO_SD_01) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_B_D2),   MP_ROM_PTR(&pin_GPIO_SD_02) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_SPI_B_D3),   MP_ROM_PTR(&pin_GPIO_SD_04) },
+
+    // [LPSPI1 ALT0] FPGA JTAG
+    { MP_OBJ_NEW_QSTR(MP_QSTR_JTAG_TDI), MP_ROM_PTR(&pin_GPIO_AD_04) }, // ALT0_LPSPI1_SDO
+    { MP_OBJ_NEW_QSTR(MP_QSTR_JTAG_TDO), MP_ROM_PTR(&pin_GPIO_AD_03) }, // ALT0_LPSPI1_SDI
+    { MP_OBJ_NEW_QSTR(MP_QSTR_JTAG_TMS), MP_ROM_PTR(&pin_GPIO_AD_05) }, // ALT0_LPSPI1_PCS0
+    { MP_OBJ_NEW_QSTR(MP_QSTR_JTAG_TCK), MP_ROM_PTR(&pin_GPIO_AD_06) }, // ALT0_LPSPI1_SCK
+
+    // FPGA configuration
+    { MP_OBJ_NEW_QSTR(MP_QSTR_FPGA_HOLDN),    MP_ROM_PTR(&pin_GPIO_AD_00) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_FPGA_DONE),     MP_ROM_PTR(&pin_GPIO_AD_01) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_FPGA_INITN),    MP_ROM_PTR(&pin_GPIO_AD_02) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_FPGA_PROGRAMN), MP_ROM_PTR(&pin_GPIO_AD_07) },
+
+    // RGB LED
+    { MP_OBJ_NEW_QSTR(MP_QSTR_USR_LED_R), MP_ROM_PTR(&pin_GPIO_02) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_USR_LED_G), MP_ROM_PTR(&pin_GPIO_01) },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_USR_LED_B), MP_ROM_PTR(&pin_GPIO_03) },
+
+    { MP_ROM_QSTR(MP_QSTR_I2C),  MP_ROM_PTR(&board_i2c_obj) },
+    { MP_ROM_QSTR(MP_QSTR_SPI),  MP_ROM_PTR(&board_spi_obj) },
+    { MP_ROM_QSTR(MP_QSTR_UART), MP_ROM_PTR(&board_uart_obj) },
+};
+MP_DEFINE_CONST_DICT(board_module_globals, board_global_dict_table);
